@@ -10,6 +10,7 @@ router = APIRouter()
 def create_ingredient(ingredient: schema_ingredient.IngredientCreate, db: Session = Depends(get_db)):
     return crud_ingredient.create_ingredient(db=db, ingredient=ingredient)
 
+
 @router.get("/ingredients/{ingredient_id}", response_model=schema_ingredient.Ingredient)
 def read_ingredient(ingredient_id: int, db: Session = Depends(get_db)):
     db_ingredient = crud_ingredient.get_ingredient(db, ingredient_id=ingredient_id)

@@ -13,5 +13,5 @@ class IngredientCreate(IngredientBase):
 class Ingredient(IngredientBase):
     id: int
 
-    class Config:
-        orm_mode = True
+    class ConfigDict:
+        from_attributes = True
