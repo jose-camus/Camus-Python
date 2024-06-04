@@ -16,6 +16,15 @@ source env/bin/activate
 
 # Install dependencies
 
-Use FastAPI + SQLAlchemy + Uvicorn + Pydantic
+# Poetry
 
-pip install fastapi uvicorn sqlalchemy psycopg2-binary pydantic
+Poetry is a tool for dependency management and packaging in Python.
+Poetry should always be installed in a dedicated virtual environment
+
+pip3 install poetry
+
+poetry init
+
+pyproject.toml -> created
+
+poetry add fastapi uvicorn sqlalchemy psycopg2-binary pydantic python-dotenv
