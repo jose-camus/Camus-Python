@@ -28,3 +28,8 @@ poetry init
 pyproject.toml -> created
 
 poetry add fastapi uvicorn sqlalchemy psycopg2-binary pydantic python-dotenv
+
+# To Init Localhost
+
+source venv/bin/activate
+uvicorn app.main:app --reload
