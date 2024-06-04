@@ -61,6 +61,13 @@ uvicorn app.main:app --reload
 
 This will start the FastAPI application with auto-reload enabled, which is useful for development.
 
+# Run Tests
+To run the tests, use the following command:
+
+```
+pytest
+```
+This will execute all the tests in the project.
 
 # Additional Information
 
@@ -70,5 +77,7 @@ This will start the FastAPI application with auto-reload enabled, which is usefu
 - **Psycopg2-binary**: A PostgreSQL database adapter for Python.
 - **Pydantic**: Data validation and settings management using Python type annotations.
 - **python-dotenv**: Reads key-value pairs from a .env file and can set them as environment variables.
+- **pytest**: A framework that makes building simple and scalable test cases easy.
+- **httpx**: A fully featured HTTP client for Python, which provides sync and async APIs.
 
 Feel free to reach out if you have any questions or need further assistance!
