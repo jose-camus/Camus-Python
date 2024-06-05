@@ -79,12 +79,31 @@ jobs:
       run: |
         poetry run black --check .
 
-    # Step to run tests and generate a test report
-    - name: Run tests
+    # Step to run unit tests with coverage
+    - name: Run unit tests with coverage
       run: |
-        poetry run pytest --junitxml=reports/test-results.xml
+        poetry run pytest --cov=./ --cov-report=xml --cov-report=term-missing -n auto
 
-    # Step to upload test results as an artifact
+    # Step to upload coverage to Codecov
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v2
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }} # Optional for public repositories but can be used for additional security
+        files: ./coverage.xml
+
+    # Step to run integration tests
+    - name: Run integration tests
+      run: |
+        # Add your integration test commands here
+        poetry run pytest tests/integration
+
+    # Step to run end-to-end tests
+    - name: Run end-to-end tests
+      run: |
+        # Add your E2E test commands here
+        poetry run pytest tests/e2e
+
+    # Step to archive test results
     - name: Archive test results
       uses: actions/upload-artifact@v2
       with:

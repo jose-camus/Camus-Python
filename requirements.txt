@@ -5,6 +5,7 @@ psycopg2-binary
 pydantic
 python-dotenv
 pytest
+exceptiongroup
 httpx
 flake8
 black

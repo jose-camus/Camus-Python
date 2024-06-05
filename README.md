@@ -47,7 +47,7 @@ This will create a pyproject.toml file which is used to manage the project's dep
 Add the necessary dependencies for the project using Poetry.
 
 ```
-poetry add fastapi uvicorn sqlalchemy psycopg2-binary pydantic python-dotenv pytest httpx flake8 black
+poetry add fastapi uvicorn sqlalchemy psycopg2-binary pydantic poetry-dotenv pytest httpx flake8 black
 ```
 
 # Run the Application
@@ -64,6 +64,9 @@ This will start the FastAPI application with auto-reload enabled, which is usefu
 # Run Tests
 To run the tests, use the following command:
 
+```
+poetry update
+```
 ```
 pytest
 ```

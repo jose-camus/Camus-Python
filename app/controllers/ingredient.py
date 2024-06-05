@@ -12,7 +12,7 @@ def get_ingredients(db: Session, skip: int = 0, limit: int = 10):
 
 
 def create_ingredient(db: Session, ingredient: IngredientCreate):
-    db_ingredient = Ingredient(**ingredient.dict())
+    db_ingredient = Ingredient(**ingredient.model_dump())
     db.add(db_ingredient)
     db.commit()
     db.refresh(db_ingredient)
