@@ -1,4 +1,5 @@
 import pytest
+from pytest import raises
 from pydantic import ValidationError
 from app.schemas.ingredient import IngredientCreate
 from app.controllers.ingredient import (
@@ -26,6 +27,12 @@ def test_create_ingredient_invalid_data(client, db):
             name="", calories=-10, protein=-1, carbohydrates=-5, fats=-0.5
         )
         create_ingredient(db, ingredient_data)
+
+
+def test_name_must_not_be_empty():
+    with raises(ValueError):
+        IngredientCreate(name="")
+        assert IngredientCreate(name="Non-empty name").name == "Non-empty name"
 
 
 def test_get_ingredient(client, db):

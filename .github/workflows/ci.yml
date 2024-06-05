@@ -26,9 +26,9 @@ jobs:
         ports:
           - 5432:5432
         env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: test_db
+          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -37,7 +37,7 @@ jobs:
 
     # Set environment variables
     env:
-      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/test_db
+      DATABASE_URL: ${{ secrets.DATABASE_URL_TEST }}
 
     steps:
     # Step to checkout the code from the repository
@@ -80,28 +80,21 @@ jobs:
         poetry run black --check .
 
     # Step to run unit tests with coverage
-    - name: Run unit tests with coverage
+    - name: Run tests with coverage
+      env:
+        DATABASE_URL_TEST: ${{ secrets.DATABASE_URL_TEST }}
       run: |
-        poetry run pytest --cov=./ --cov-report=xml --cov-report=term-missing -n auto
-
+        poetry run pytest --cov=app --cov-report=xml --cov-report=html tests/
+    
     # Step to upload coverage to Codecov
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v2
+    - name: Upload coverage report
+      uses: actions/upload-artifact@v2
       with:
-        token: ${{ secrets.CODECOV_TOKEN }} # Optional for public repositories but can be used for additional security
-        files: ./coverage.xml
+        name: coverage-report
+        path: htmlcov
 
     # Step to run integration tests
-    - name: Run integration tests
-      run: |
-        # Add your integration test commands here
-        poetry run pytest tests/integration
-
     # Step to run end-to-end tests
-    - name: Run end-to-end tests
-      run: |
-        # Add your E2E test commands here
-        poetry run pytest tests/e2e
 
     # Step to archive test results
     - name: Archive test results
