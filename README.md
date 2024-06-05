@@ -47,7 +47,7 @@ This will create a pyproject.toml file which is used to manage the project's dep
 Add the necessary dependencies for the project using Poetry.
 
 ```
-poetry add fastapi uvicorn sqlalchemy psycopg2-binary pydantic poetry-dotenv pytest httpx flake8 black
+poetry add fastapi uvicorn sqlalchemy psycopg2-binary pydantic poetry-plugin-dotenv pytest httpx flake8 black
 ```
 
 # Run the Application

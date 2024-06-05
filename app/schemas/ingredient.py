@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field, field_validator
 
 
 class IngredientBase(BaseModel):
@@ -10,7 +10,17 @@ class IngredientBase(BaseModel):
 
 
 class IngredientCreate(IngredientBase):
-    pass
+    name: str = Field(..., min_length=1)
+    calories: float = Field(..., ge=0)
+    protein: float = Field(..., ge=0)
+    carbohydrates: float = Field(..., ge=0)
+    fats: float = Field(..., ge=0)
+
+    @field_validator("name")
+    def name_must_not_be_empty(cls, v):
+        if not v.strip():
+            raise ValueError("Name must not be empty")
+        return v
 
 
 class Ingredient(IngredientBase):
