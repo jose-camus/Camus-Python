@@ -6,8 +6,11 @@ from app.database import get_db
 
 router = APIRouter()
 
+
 @router.post("/ingredients/", response_model=schema_ingredient.Ingredient)
-def create_ingredient(ingredient: schema_ingredient.IngredientCreate, db: Session = Depends(get_db)):
+def create_ingredient(
+    ingredient: schema_ingredient.IngredientCreate, db: Session = Depends(get_db)
+):
     return crud_ingredient.create_ingredient(db=db, ingredient=ingredient)
 
 
@@ -17,6 +20,7 @@ def read_ingredient(ingredient_id: int, db: Session = Depends(get_db)):
     if db_ingredient is None:
         raise HTTPException(status_code=404, detail="Ingredient not found")
     return db_ingredient
+
 
 @router.get("/ingredients/", response_model=list[schema_ingredient.Ingredient])
 def read_ingredients(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
