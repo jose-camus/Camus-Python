@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "camus-python"
+name = "app"
 version = "0.1.0"
 description = ""
 authors = ["Camus <jose.camus@globant.com>"]
@@ -13,7 +13,6 @@ sqlalchemy = "^2.0.30"
 psycopg2-binary = "^2.9.9"
 pydantic = "^2.7.3"
 python-dotenv = "^1.0.1"
-
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.2.2"

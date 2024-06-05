@@ -36,6 +36,8 @@ jobs:
 
     - name: Set up Python
       uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
 
     - name: Install Poetry
       run: |
@@ -47,4 +49,28 @@ jobs:
 
     - name: Run tests
       run: |
-        poetry run pytest
+        poetry run pytest --junitxml=reports/test-results.xml
+
+    - name: Archive test results
+      uses: actions/upload-artifact@v2
+      with:
+        name: test-results
+        path: reports/test-results.xml
+
+    - name: List files
+      run: |
+        find . -type f | grep -v -E 'venv|python3.9'
+
+    - name: Show pyproject.toml
+      run: |
+        cat pyproject.toml
+
+    - name: Build package
+      run: |
+        poetry build
+
+    - name: Archive build artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: build-artifacts
+        path: dist/*
