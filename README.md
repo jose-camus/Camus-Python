@@ -84,3 +84,10 @@ This will execute all the tests in the project.
 - **httpx**: A fully featured HTTP client for Python, which provides sync and async APIs.
 
 Feel free to reach out if you have any questions or need further assistance!
+
+# CI/CD:
+
+- **GitHub Actions**: Automates CI/CD workflows directly in GitHub, running tests, builds, and deployments on push or pull requests.
+- **Flake8**: Linting tool that checks Python code against PEP 8, detects errors and complexity.
+- **Black**: Automatic code formatter for Python, ensuring uniform style.
+- **Coveralls**: Analyzes test coverage, showing untested code areas with detailed reports.
